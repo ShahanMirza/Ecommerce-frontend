@@ -17,15 +17,15 @@ const Menu=({history})=>(
             <Link className="nav-link" style={isActive( history , '/')} to='/'>Home</Link>
         </li>
         <li className="nav-item">
-            <Link className="nav-link" style={isActive(history,'/Dashboard')} to='/Dasboard'>DashBoard</Link>
+            <Link className="nav-link" style={isActive(history,'/dashboard')} to='/dashboard'>DashBoard</Link>
         </li>
         {!isAuthenticated()&& (
             <Fragment>
         <li className="nav-item">
-        <Link className="nav-link" style={isActive(history, '/Signin')} to='/Signin'>Signin</Link>
+        <Link className="nav-link" style={isActive(history, '/signin')} to='/signin'>Signin</Link>
     </li>
     <li className="nav-item">
-        <Link className="nav-link" style={isActive(history, '/Signup')} to='/Signup'>SignUp</Link>
+        <Link className="nav-link" style={isActive(history, '/signup')} to='/signup'>SignUp</Link>
     </li>
     </Fragment>
         )}
