@@ -59,15 +59,15 @@ export const signup=(user)=>{
 
  export const isAuthenticated=()=>{
      if(typeof window == 'undefined'){
-         console.log("jwt checkpoint in false position")
+        //  console.log("jwt checkpoint in false position")
          return false
      }
      if(localStorage.getItem('jwt')){
-         console.log(JSON.parse(localStorage.getItem('jwt')))
+        //   console.log()
         return JSON.parse(localStorage.getItem('jwt'))
      }
      else{
-         console.log('in else')
+        //  console.log('in else')
          return false
      }
  }
