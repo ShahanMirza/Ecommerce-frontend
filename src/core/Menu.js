@@ -1,25 +1,24 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Fragment } from "react/cjs/react.development";
-import { signOut,isAuthenticated } from "../auth/index";
+import { signOut, isAuthenticated } from "../auth/index";
 
-const isActive=(history,path)=>{
-    if(history.location.pathname === path){
-        return {color: '#ff9900'}
-    }else{
-        return {color:'#ffffff'}
+const isActive = (history, path) => {
+    if (history.location.pathname === path) {
+        return { color: '#ff9900' }
+    } else {
+        return { color: '#ffffff' }
     }
 }
 
 const Menu=({history})=>(
-    
 <div>
-    
+
     <ul className="nav nav-tabs bg-primary">
         <li className="nav-item">
             <Link className="nav-link" style={isActive( history , '/')} to='/'>Home</Link>
         </li>
-        
+
          {/* {isAuthenticated() && isAuthenticated().user.role===0 &&(
             <li className="nav-item">
             <Link className="nav-link" style={isActive(history,'/user/dashboard')} to='/user/dashboard'>DashBoard</Link>
@@ -41,7 +40,7 @@ const Menu=({history})=>(
     </Fragment>
         )}
        {isAuthenticated()&&(
-           
+
             <li className="nav-item">
                 {/* <li className="nav-item"><h2>{isAuthenticated().user.role}</h2></li> */}
             <span className="nav-link" style={{cursor:'pointer', color:'#ffffff'}} onClick={()=>signOut(()=>{
