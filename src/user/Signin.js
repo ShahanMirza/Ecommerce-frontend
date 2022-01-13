@@ -13,33 +13,33 @@ const Signin=()=>{
 
     })
     const {email,password,error,loading,redirectToReferrer}=values
-    
-    const handleChange=name=>event=>{
-        setValues({...setValues,error:false,[name]:event.target.value})
+
+    const handleChange=e=>{
+        setValues({...setValues,error:false,[e.target.name]:e.target.value})
     }
 
     const clickSubmit=(event)=>{
         event.preventDefault();
         setValues({...values,error:false,loading:true})
-        signin({email,password}).then(data=>{
-            if(data.err){
-                setValues({...values,error:data.err,loading:false})
+        signin({email: event.target.email.value,password: event.target.password.value}).then(data=>{
+            if(data.error){
+                setValues({...values,error:data.error,loading:false})
             }else{
                 authenticate(data,()=>setValues({...values,redirectToReferrer:true}))
             }
         })
     }
 const signInForm=()=>(
-    <form>
+    <form onSubmit={clickSubmit}>
         <div className="form-group">
             <label className="text-muted">Email</label>
-            <input className="form-control" onChange={handleChange('email')} type='email' value={email}/>
+            <input className="form-control" onChange={handleChange} name="email" type='email' value={email}/>
         </div>
         <div className="form-group">
             <label className="text-muted">Password</label>
-            <input className="form-control" onChange={handleChange('password')} type='password' value={password}/>
+            <input className="form-control" onChange={handleChange} name="password" type='password' value={password}/>
         </div>
-        <button onClick={clickSubmit} className="btn btn-primary">Submit</button>
+        <button className="btn btn-primary">Submit</button>
     </form>
 )
 
