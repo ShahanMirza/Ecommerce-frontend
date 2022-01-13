@@ -11,11 +11,11 @@ const Routess =()=>{
     return(
     <BrowserRouter>
         <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/signin" exact component={Signin}/>
-            <Route path="/signup" exact component={Signup}/>
-            <PrivateRoute path='/user/dashboard' exact component={DashBoard}/>
-            <AdminRoute path='/admin/dashboard' exact component={AdminDashboard}/>
+            <Route exact path="/"  component={Home}/>
+            <Route exact path="/signin"  component={Signin}/>
+            <Route exact path="/signup"  component={Signup}/>
+            <PrivateRoute exact path='/user/dashboard'  component={DashBoard}/>
+            <AdminRoute exact path='/admin/dashboard'  component={AdminDashboard}/>
         </Switch>
     </BrowserRouter>
     )

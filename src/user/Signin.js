@@ -5,8 +5,8 @@ import { signin,authenticate,isAuthenticated } from "../auth/index";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 const Signin=()=>{
     const[values,setValues]=useState({
-        email:"shahan@yahoo.com",
-        password:"Test@123",
+        email:"",
+        password:"",
         error:"",
         loading:false,
         redirectToReferrer:false
@@ -14,7 +14,7 @@ const Signin=()=>{
     });
 
     const {email,password,error,loading,redirectToReferrer}=values;
-    const {users}=isAuthenticated();
+    const {user}=isAuthenticated();
 
     const handleChange=event=>{
         setValues({...setValues,error:false,[event.target.name]:event.target.value})
@@ -55,7 +55,7 @@ const showLoding=()=>(
 
 const redirectUser=()=>{
     if(redirectToReferrer){
-        if(users && users.role === 1){
+        if(user && user.role === 1){
             console.log('admin role')
             return <Redirect to='/admin/dashboard'/>
         }else{
