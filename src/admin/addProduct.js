@@ -42,7 +42,7 @@ const AddProduct=()=>{
         setValues({...values,[name]:value})
     }
     const clickSubmit=(event)=>{
-        event.preventDefault()
+        event.preventDefault();
         setValues({...values,error:'',loading:true})
         createProduct(user._id,token,formData).then(data=>{
             if(data.error){
@@ -118,7 +118,7 @@ const AddProduct=()=>{
                     {showSuccess()}
                     {newPostForm()}</div>
             </div>
-        </Layout> 
+        </Layout>
      )
 }
 export default AddProduct

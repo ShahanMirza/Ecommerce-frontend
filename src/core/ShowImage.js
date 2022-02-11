@@ -1,9 +1,9 @@
 import React from 'react'
-import { API } from '../Config'
+import { PHOTO_API } from '../Config'
 
 const ShowImage=({item,url})=>(
     <div className='product-img'>
-        <img src={`${API}/${url}/photo/${item._id}`} alt={item.name} className='mb-3'
+        <img src={`${PHOTO_API}/${item.photoName}`} alt={item.name} className='mb-3'
         style={{maxHeight:'100%',maxWidth:'100%'}}/>
     </div>
 )
