@@ -8,7 +8,7 @@ import DashBoard from './user/UserDashboard'
 import AdminDashboard from "./user/AdminDashboard";
 import AdminRoute from "./auth/AdminRoute";
 import AddCategory from './admin/AddCategory'
-import AddProduct from "./admin/addProduct";
+import AddProduct  from "./admin/AddProduct";
 const Routess =()=>{
     return(
     <BrowserRouter>
