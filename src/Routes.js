@@ -11,6 +11,7 @@ import AddCategory from './admin/AddCategory'
 import AddProduct  from "./admin/AddProduct";
 import Shop from "./core/Shop";
 import Product from "./core/Product";
+import Cart from "./core/Cart";
 const Routess =()=>{
     return(
     <BrowserRouter>
@@ -19,11 +20,13 @@ const Routess =()=>{
             <Route exact path='/shop' component={Shop}/>
             <Route exact path="/signin"  component={Signin}/>
             <Route exact path="/signup"  component={Signup}/>
+
             <PrivateRoute exact path='/user/dashboard'  component={DashBoard}/>
             <AdminRoute exact path='/admin/dashboard'  component={AdminDashboard}/>
             <AdminRoute exact path='/create/category' component={AddCategory}/>
             <AdminRoute exact path='/create/product' component={AddProduct}/>
             <Route exact path="/product/:productId"  component={Product}/>
+            <Route path='/cart' component={Cart}/>
         </Switch>
     </BrowserRouter>
     )
