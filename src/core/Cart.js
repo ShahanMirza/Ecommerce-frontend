@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import Checkout from "./Checkout";
 const Cart=()=>{
     const [items,setItems]=useState([])
+    const [run,setRun] =useState(false)
 
     useEffect(()=>{
-        setItems(currentItems=>getCart(currentItems))
-    },[items])
+    setItems(getCart())
+ 
+    },[run])
 
-    const showItems=items=>{
+    const showItems=items=> {
         return (
             <div>
                 <h2>Your Cart has {`${items.length}`} items</h2>
@@ -20,12 +22,14 @@ const Cart=()=>{
                 product={product} 
                 showAddToCartButton={false}
                 cartUpdate={true}
-                showRemoveProductButton={true}/>))}
+                showRemoveProductButton={true}
+                setRun={setRun}
+                run={run}/>))}
             </div>
         )
     }
 
-    const noItemsMessage=()=>(
+    const noItemsMessage= () => (
         <h2>Your Cart is empty <br/><Link to={'/shop'}>Continue Shopping</Link></h2>
     )
     return(

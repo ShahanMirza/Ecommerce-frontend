@@ -38,10 +38,12 @@ export const itemTotal=()=>{
 export const getCart= () =>{
     if(typeof window !== 'undefined'){
         if(localStorage.getItem('cart')){
+            // console.log('cart has some value')
             return JSON.parse(localStorage.getItem('cart'))
-        }
+            }
     }
-    return []
+    console.log('cart has no value')
+    return null
 }
 
 
