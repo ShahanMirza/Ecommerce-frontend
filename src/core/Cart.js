@@ -8,7 +8,7 @@ const Cart=()=>{
     const [items,setItems]=useState([])
 
     useEffect(()=>{
-        setItems(getCart)
+        setItems(currentItems=>getCart(currentItems))
     },[items])
 
     const showItems=items=>{
@@ -32,7 +32,7 @@ const Cart=()=>{
         <Layout title="Shoppoing Cart" description="Manage your Cart items. Add remove checkout and continue shopping" className='container-fluid'>
             <div className="row">
                 <div className="col-6">
-                    {items.length>0 ? showItems(items):noItemsMessage()}
+                    {items.length > 0 ? showItems(items) : noItemsMessage()}
                 </div>
                 <div className="col-6">
                     <h2 className="mb-4">Your cart summary</h2>
