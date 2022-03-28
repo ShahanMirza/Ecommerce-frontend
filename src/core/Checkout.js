@@ -41,11 +41,11 @@ const Checkout=({products})=>{
         <div>
             {data.clientToken !== null && products.length > 0 ? (
                  <div>
-                 <DropIn
+                  <DropIn
                    options={{ authorization: data.token}}
-                   onInstance={(instance) => (data.instance = instance)}
+                   onInstance={instance=> (data.instance = instance)}
                  />
-                 <button onClick="btn btn-success">Submit</button>
+                 <button onClick="btn btn-success">Submit</button> 
                </div>
             ):null}
         </div>
