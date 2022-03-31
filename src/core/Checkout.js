@@ -1,12 +1,14 @@
 import React,{ useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
-import {getBrainTreeClientToken} from './apiCore'
-import DropIn from "braintree-web-drop-in-react";
+import {getBrainTreeClientToken,processPayment} from './apiCore'
+import DropIn from 'braintree-web-drop-in-react';
 import 'braintree-web'
+import {emptyCart} from './cartHelpers'
 
-const Checkout=({products})=>{
+const Checkout=({products, setRun = f => f, run = undefined})=>{
     const [data, setData]=useState({
+        loading:false,
         success:false,
         clientToken:null,
         error:'',
@@ -21,7 +23,7 @@ const Checkout=({products})=>{
             if(data.error){
                 setData({...data, error: data.error})
             }else{
-                setData({...data, clientToken: data.clientToken})
+                setData({ clientToken: data.clientToken})
             }
         })
     }
@@ -35,29 +37,82 @@ const Checkout=({products})=>{
         } ,0)
     }
 
-
+    const buy=()=>{
+        setData({loading:true})
+        //send the nounce to server
+        //nounce=data.instance.requestPaymentethod
+        let nonce;
+        let getNonce=data.instance.requestPaymentMethod()
+        .then(data=>{
+            // console.log(data)
+            nonce=data.nonce
+            // console.log('send nounce and total to process:', nounce, getTotal(products))
+            const paymentData={
+                paymentMethodNonce:nonce,
+                amount:getTotal(products)
+            }
+            processPayment(userId,token,paymentData)
+            .then(response=>{
+                // console.log(response)
+                setData({...data,success:response.success})
+                emptyCart(()=>{
+                    console.log(run)
+                    setRun(!run);
+                 // console.log('payment successful and empty cart')
+                 setData({loading:false})
+                })
+            })
+            .catch(error=>{
+                console.log(error)
+                setData({loading:false})
+            })
+        }).catch(error=>{
+            // console.log('dropin error:',error)
+            setData({...data,error:error.message})
+        })
+    }
 
     const showDropIn=()=>{
-        <div>
+        return(
+        <div onBlur={()=>setData({...data,error:""})}>
             {data.clientToken !== null && products.length > 0 ? (
                  <div>
                   <DropIn
-                   options={{ authorization: data.token}}
+                   options={{ authorization: data.clientToken,
+                    // paypal:{
+                    //     flow:'vault'
+                    // }
+                
+                }}
                    onInstance={instance=> (data.instance = instance)}
                  />
-                 <button onClick="btn btn-success">Submit</button> 
+                 <button className="btn btn-success btn-block" onClick={buy}>Pay</button> 
                </div>
             ):null}
         </div>
-    }
+        )}
     const showCheckout=()=>{
         return isAuthenticated() ? (<div>{showDropIn()}</div>):(
               <Link to="/signin">
                   <button className="btn btn-primary">Sign in to checkout</button>
               </Link>)
               }
+    const showError=error=>(
+        <div className='alert alert-danger' style={{display: error?"":"none"}}>{error}</div>
+    )
+
+    const showSuccess=(success)=>(
+        <div className='alert alert-info' style={{display:success ? '' :'none'}}>
+            Thanks! Your payment was successful</div>
+    )
+    const showLoading=(loading)=>(
+        loading && <h2>Loading ....</h2>
+    )
     return(
         <div><h2>Total:${getTotal()}</h2>
+        {showLoading(data.loading)}
+        {showSuccess(data.success)}
+        {showError(data.error)}
          {showCheckout()}
         </div>
     )

@@ -1,3 +1,5 @@
+import { type } from "@testing-library/user-event/dist/type"
+
 export const addItem=(item,next)=>{
     let cart=[]
     if(typeof window !== 'undefined'){
@@ -43,7 +45,7 @@ export const getCart= () =>{
             }
     }
     console.log('cart has no value')
-    return null
+    return []
 }
 
 
@@ -82,4 +84,12 @@ export const removeItem=(productId)=>{
         localStorage.setItem('cart',JSON.stringify(cart))
     }
     return cart
+}
+
+
+export const emptyCart= (next) => {
+    if(typeof window !== 'undefined' ){
+        localStorage.removeItem('cart')
+        next()
+    }
 }
