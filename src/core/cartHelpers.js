@@ -44,7 +44,7 @@ export const getCart= () =>{
             return JSON.parse(localStorage.getItem('cart'))
             }
     }
-    console.log('cart has no value')
+    // console.log('cart has no value')
     return []
 }
 

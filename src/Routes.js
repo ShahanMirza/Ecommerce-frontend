@@ -12,6 +12,7 @@ import AddProduct  from "./admin/AddProduct";
 import Shop from "./core/Shop";
 import Product from "./core/Product";
 import Cart from "./core/Cart";
+import Orders from "./admin/Orders";
 const Routess =()=>{
     return(
     <BrowserRouter>
@@ -25,6 +26,7 @@ const Routess =()=>{
             <AdminRoute exact path='/admin/dashboard'  component={AdminDashboard}/>
             <AdminRoute exact path='/create/category' component={AddCategory}/>
             <AdminRoute exact path='/create/product' component={AddProduct}/>
+            <AdminRoute exact path='/admin/orders' component={Orders}/>
             <Route exact path="/product/:productId"  component={Product}/>
             <Route path='/cart' component={Cart}/>
         </Switch>
