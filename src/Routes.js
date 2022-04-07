@@ -9,10 +9,14 @@ import AdminDashboard from "./user/AdminDashboard";
 import AdminRoute from "./auth/AdminRoute";
 import AddCategory from './admin/AddCategory'
 import AddProduct  from "./admin/AddProduct";
+import UpdateProduct from "./admin/UpdateProduct";
 import Shop from "./core/Shop";
 import Product from "./core/Product";
 import Cart from "./core/Cart";
 import Orders from "./admin/Orders";
+import Profile from './user/Profile'
+import ManageProducts from "./admin/ManageProducts";
+
 const Routess =()=>{
     return(
     <BrowserRouter>
@@ -23,9 +27,12 @@ const Routess =()=>{
             <Route exact path="/signup"  component={Signup}/>
 
             <PrivateRoute exact path='/user/dashboard'  component={DashBoard}/>
+            <PrivateRoute exact path="/profile/:userId" component={Profile}/>
             <AdminRoute exact path='/admin/dashboard'  component={AdminDashboard}/>
             <AdminRoute exact path='/create/category' component={AddCategory}/>
             <AdminRoute exact path='/create/product' component={AddProduct}/>
+            <AdminRoute exact path='/admin/products' component={ManageProducts}/>
+            <AdminRoute exact path='/admin/product/update/:productId' component={UpdateProduct}/>
             <AdminRoute exact path='/admin/orders' component={Orders}/>
             <Route exact path="/product/:productId"  component={Product}/>
             <Route path='/cart' component={Cart}/>
