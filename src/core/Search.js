@@ -13,7 +13,7 @@ const Search=()=>{
     const {categories,category,search,results,searched}=data;
     const loadCategories=()=>{
         getCategories().then(data=>{
-            if(data.error){
+            if(data?.error){
                 console.log(data.error)
             }else{
                 setData({...data,categories:data})
@@ -73,7 +73,7 @@ const Search=()=>{
            <div className="input-group-prepend">
                <select className="btn mr-2" onChange={handleChange('category')}>
                    <option value='All'>All</option>
-                   {categories.map((c,i)=>(
+                   {categories?.map((c,i)=>(
                        <option key={i} value={c._id}>{c.name}</option>
                    ))}
                </select>
