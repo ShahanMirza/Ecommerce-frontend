@@ -16,7 +16,7 @@ const DashBoard=()=>{
     
     const init=(userId,token)=>{
         getPurchaseHistory(userId,token).then(data=>{
-            if(data.error){
+            if(data?.error){
                 console.log(data.error)
             }else{
                 setHistory(data)

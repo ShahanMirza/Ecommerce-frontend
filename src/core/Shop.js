@@ -18,7 +18,7 @@ const Shop=()=>{
     const [filteredResults,setFilteredResult]=useState([])
     const init=()=>{
         getCategories().then(data=>{
-            if(data.error){
+            if(data?.error){
                 setError(data.error)
             }else{
                 setCategories(data)
@@ -28,7 +28,7 @@ const Shop=()=>{
     const loadFilteredResults=(newFilters)=>{
         // console.log(newFilters)
         getFilteredProducts(skip,limit,newFilters).then(data=>{
-            if(data.error){
+            if(data?.error){
                 setError(data.error)
             }else {
                 setFilteredResult(data.data)
@@ -41,7 +41,7 @@ const Shop=()=>{
     const loadMore=()=>{
         let toSkip=skip+limit
         getFilteredProducts(toSkip,limit,myFilters.filters).then(data=>{
-            if(data.error){
+            if(data?.error){
                 setError(data.error)
             }else{
                 setFilteredResult([...filteredResults,...data.data])
@@ -103,7 +103,7 @@ const Shop=()=>{
                     <h2 className="mb-4">Products</h2>
                     <div className="row">
                         {/* {console.log(filteredResults)} */}
-                        {filteredResults.map((product,i)=>(
+                        {filteredResults?.map((product,i)=>(
                             <div key={i} className='col-4 mb-3'>
                                 <Card  product={product}/></div>
                         ))}

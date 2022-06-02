@@ -19,7 +19,7 @@ const Profile=({match})=>{
     const init=(userId)=>{
          console.log(match)
         read(userId,token).then(data=>{
-            if(data.error){
+            if(data?.error){
                 setValues({...values, error:true})
             }else{
                 setValues({...values, name:data.name, email:data.email, error:false})
@@ -37,7 +37,7 @@ const Profile=({match})=>{
     const clickSubmit=(e)=>{
         e.preventDefault()
         update(match.params.userId,token,{name,email,password}).then(data=>{
-            if(data.error){
+            if(data?.error){
                 console.log(data.error)
             }else{
                 updateUser(data,()=>{

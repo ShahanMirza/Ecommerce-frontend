@@ -20,7 +20,7 @@ const Checkout=({products, setRun = f => f, run = undefined})=>{
 
     const getToken=(userId,token)=>{
         getBrainTreeClientToken(userId,token).then(data=>{
-            if(data.error){
+            if(data?.error){
                 setData({...data, error: data.error})
             }else{
                 setData({ clientToken: data.clientToken})

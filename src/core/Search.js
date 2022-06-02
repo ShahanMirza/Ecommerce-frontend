@@ -30,7 +30,7 @@ const Search=()=>{
         if(search){
             list({search:search|| undefined, category:category })
             .then(response=>{
-                if(response.error){
+                if(response?.error){
                     console.log(response.error)
                 }else{
                     setData({...data,results:response,searched:true})
@@ -61,7 +61,7 @@ const Search=()=>{
             <div>
                 <h2 className="mt-4 mb-4">{searchMessage(searched,results)}</h2>
                 <div className="row">
-            {results.map((product,i)=>(<Card key={i} product={product}/>))}
+            {results?.map((product,i)=>(<Card key={i} product={product}/>))}
         </div>
             </div>
         )

@@ -24,7 +24,7 @@ const UpdateProduct=({match})=>{
 
     const init=(productId)=>{
         getProduct(productId).then(data=>{
-            if(data.error){
+            if(data?.error){
                 setValues({...values,error:data.error})
             }else{
                 setValues({...values,
@@ -42,7 +42,7 @@ const UpdateProduct=({match})=>{
     }
     const initCategories=()=>{
         getCategories().then(data=>{
-            if(data.error){
+            if(data?.error){
                 setValues({...values,error:data.error})
             }else{
                 setValues({categories:data,formData:new FormData()})
@@ -63,7 +63,7 @@ const UpdateProduct=({match})=>{
         event.preventDefault()
         setValues({...values,error:'',loading:true})
         updateProduct(match.params.productId,user._id,token,formData).then(data=>{
-            if(data.error){
+            if(data?.error){
                 // console.log('values in if '+values)
                 setValues({...values,error:data.error})
             }else{
@@ -96,7 +96,7 @@ const UpdateProduct=({match})=>{
                 <label className="text-muted">Category</label>
                 <select className="form-control" onChange={handleChange('category')}>
                 <option >Please Select</option>
-                   {categories && categories.map((c,i)=>(<option key={i} value={c._id}>{c.name}</option>))}
+                   {categories && categories?.map((c,i)=>(<option key={i} value={c._id}>{c.name}</option>))}
                 </select>
             </div>
             <div className="form-group">

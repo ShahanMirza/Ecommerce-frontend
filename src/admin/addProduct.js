@@ -24,7 +24,7 @@ const AddProduct=()=>{
 
     const init=()=>{
         getCategories().then(data=>{
-            if(data.error){
+            if(data?.error){
                 setValues({...values,error:data.error})
             }else{
                 setValues({...values,categories:data,formData:new FormData()})
@@ -45,7 +45,7 @@ const AddProduct=()=>{
         event.preventDefault()
         setValues({...values,error:'',loading:true})
         createProduct(user._id,token,formData).then(data=>{
-            if(data.error){
+            if(data?.error){
                 // console.log('values in if '+values)
                 setValues({...values,error:data.error})
             }else{
@@ -78,7 +78,7 @@ const AddProduct=()=>{
                 <label className="text-muted">Category</label>
                 <select className="form-control" onChange={handleChange('category')}>
                 <option >Please Select</option>
-                   {categories && categories.map((c,i)=>(<option key={i} value={c._id}>{c.name}</option>))}
+                   {categories && categories?.map((c,i)=>(<option key={i} value={c._id}>{c.name}</option>))}
                 </select>
             </div>
             <div className="form-group">

@@ -10,7 +10,7 @@ const Orders=()=>{
     const {user,token}=isAuthenticated()
     const loadOrders=()=>{
         listOrders(user._id,token).then(data=>{
-            if(data.error){
+            if(data?.error){
                 console.log(data.error)
             }else{
                 setOrders(data)
@@ -19,7 +19,7 @@ const Orders=()=>{
     }
     const loadStatusValues=()=>{
         getStatusValues(user._id,token).then(data=>{
-            if(data.error){
+            if(data?.error){
                 console.log(data.error)
             }else{
                 setStatusValues(data)
@@ -55,7 +55,7 @@ const Orders=()=>{
     const handleStatusChange=(e,orderId)=>{
         // console.log('update order status')
         updateOrderStatus(user._id,token,orderId,e.target.value).then(data=>{
-            if(data.error){
+            if(data?.error){
                 console.log("Status update failed")
             }else{
                 loadOrders()
@@ -67,7 +67,7 @@ const Orders=()=>{
             <h3 className="mark mb-4"> Status: {o.status}</h3>
             <select className="form-group" onChange={(e)=>handleStatusChange(e,o._id)}>
                 <option>Update Status</option>
-                {statusValues.map((status,index)=>(
+                {statusValues?.map((status,index)=>(
                     <option key={index} value={status}>
                         {status}
                     </option>
@@ -80,7 +80,7 @@ const Orders=()=>{
             <div className="row">
                 <div className='col-md-8 offset-md-2'>
                     {shhowOrdersLength()}
-                    {orders.map((o,oIndex)=>{
+                    {orders?.map((o,oIndex)=>{
                         return(
                             <div className="mt-5" key={oIndex} style={{borderBottom:'5px solid indigo'}}>
                                 <h2 className="mb-5">
@@ -97,7 +97,7 @@ const Orders=()=>{
                                 <h3 className="mt-4 mb-4 font-italic">
                                     Total products in the orders: {o.products.length}
                                 </h3>
-                                {o.products.map((p,pIndex)=>(
+                                {o.products?.map((p,pIndex)=>(
                                     <div className="mb-4" key={pIndex} style={{ padding:'20px',border:'1px solid indigo'}}>
                                         {showInput('Product name',p.name)}
                                         {showInput('Product price',p.price)}

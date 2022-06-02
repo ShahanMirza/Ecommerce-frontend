@@ -10,13 +10,13 @@ const Product=(props)=>{
     const loadSingleProduct=productId=>{
         read(productId).then(data=>{
             // console.log(data)
-            if(data.error){
+            if(data?.error){
                  setError(data.error)
                 // console.log(data.error)
             }else{
                 setPoduct(data)
                 listRelated(data._id).then(data=>{
-                    if(data.error){
+                    if(data?.error){
                         setError(data.error)
                     }else{
                         setRelatedProduct(data)
@@ -41,7 +41,7 @@ const Product=(props)=>{
                 </div>
                 <div className="col-4">
                     <h4>Related Products</h4>
-                    {realtedProduct.map((p,i)=>(
+                    {realtedProduct?.map((p,i)=>(
                         <div className="mb-3">
                         <Card key={i} product={p}/>
                         </div>

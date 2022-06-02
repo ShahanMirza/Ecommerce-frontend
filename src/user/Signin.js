@@ -24,7 +24,7 @@ const Signin=()=>{
         event.preventDefault();
         setValues({...values,error:false,loading:true})
         signin({email: event.target.email.value,password: event.target.password.value}).then(data=>{
-            if(data.error){
+            if(data?.error){
                 setValues({...values,error:data.error,loading:false})
             }else{
                 authenticate(data,()=>setValues({...values,redirectToReferrer:true}))
